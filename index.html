@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>자비스 튜터</title>
+  <meta name="description" content="강의자료로 직접 가르치는 개인 시험공부 앱">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1b1f28" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="자비스">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pwa">
+  <header class="top">
+    <a class="brand" href="#/" data-nav><span class="logo">J</span><span>자비스 튜터</span></a>
+    <nav id="nav"></nav>
+    <button id="pomo" class="pomo" title="뽀모도로 타이머 — 25분 집중 / 5분 휴식">⏱ 25:00</button>
+  </header>
+
+  <main id="app"></main>
+  <nav id="tabbar" aria-label="하단 메뉴"></nav>
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- 수업 데이터: 강의자료를 바탕으로 만든 단원들 -->
+  <script src="data/physics-a.js"></script>
+  <script src="data/physics-b.js"></script>
+  <script src="data/stat-a.js"></script>
+  <script src="data/stat-b.js"></script>
+  <script src="data/stat-c.js"></script>
+  <script src="data/statf-01.js"></script>
+  <script src="data/statf-02.js"></script>
+  <script src="data/statf-03.js"></script>
+  <script src="data/statf-04.js"></script>
+  <script src="data/statf-05.js"></script>
+  <script src="data/statf-06.js"></script>
+  <script src="data/statf-07.js"></script>
+  <script src="data/statf-08.js"></script>
+  <script src="data/statf-09.js"></script>
+  <script src="data/statf-10.js"></script>
+  <script src="data/calc-01.js"></script>
+  <script src="data/calc-02.js"></script>
+  <script src="data/calc-03.js"></script>
+  <script src="data/calc-04.js"></script>
+  <script src="data/calc-05.js"></script>
+  <script src="data/calc-06.js"></script>
+  <script src="data/calc-07.js"></script>
+  <script src="data/calc-08.js"></script>
+  <script src="data/calc-09.js"></script>
+  <!-- 객관식 보기별 "왜 틀렸는지" -->
+  <script src="data/why-physics-a.js"></script>
+  <script src="data/why-physics-b.js"></script>
+  <script src="data/why-stat-a.js"></script>
+  <script src="data/why-stat-b.js"></script>
+  <script src="data/why-stat-c.js"></script>
+  <script src="data/why-statf-01.js"></script>
+  <script src="data/why-statf-02.js"></script>
+  <script src="data/why-statf-03.js"></script>
+  <script src="data/why-statf-04.js"></script>
+  <script src="data/why-statf-05.js"></script>
+  <script src="data/why-statf-06.js"></script>
+  <script src="data/why-statf-07.js"></script>
+  <script src="data/why-statf-08.js"></script>
+  <script src="data/why-statf-09.js"></script>
+  <script src="data/why-statf-10.js"></script>
+  <script src="data/why-calc-01.js"></script>
+  <script src="data/why-calc-02.js"></script>
+  <script src="data/why-calc-03.js"></script>
+  <script src="data/why-calc-04.js"></script>
+  <script src="data/why-calc-05.js"></script>
+  <script src="data/why-calc-06.js"></script>
+  <script src="data/why-calc-07.js"></script>
+  <script src="data/why-calc-08.js"></script>
+  <script src="data/why-calc-09.js"></script>
+  <!-- PDF로 만든 단원 (자동 목록) -->
+  <script src="data/gen-index.js"></script>
+
+  <script src="vendor/katex/katex.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // 설치형 앱: 인터넷 주소에서만 오프라인 저장을 켠다 (PC 서버 화면은 그대로)
+    if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.search.includes('pwa=1'))) {
+      let reloaded = false, hadController = !!navigator.serviceWorker.controller;
+      navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController && !reloaded) { reloaded = true; location.reload(); } hadController = true; });
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
